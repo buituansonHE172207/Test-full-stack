@@ -3,7 +3,7 @@ name: Test Reusable Workflow
 on:
   push:
     branches:
-      - main
+      - master
 permissions:
   packages: write
   contents: read
@@ -17,7 +17,7 @@ jobs:
       image-name: tuansondocker1407/test-azure
       registry: docker.io
       dockerfile-path: ./backend/Dockerfile
-      context: .
+      context: ./backend
     secrets: 
       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
