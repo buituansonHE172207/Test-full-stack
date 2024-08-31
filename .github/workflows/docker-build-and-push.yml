@@ -44,9 +44,7 @@ jobs:
       contents: read
       attestations: write
       id-token: write
-    env:
-      REGISTRY: ${{ github.event.inputs.registry }}
-      IMAGE_NAME: ${{ github.event.inputs.image-name }}
+
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
@@ -61,7 +59,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
-          images: ${{ env.IMAGE_NAME}}
+          images: ${{ github.event.inputs.image-name }}
 
       - name: Build and push Docker image
         id: push
@@ -76,6 +74,6 @@ jobs:
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@v1
         with:
-          subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}
+          subject-name: ${{ github.event.inputs.registry }}/${{ github.event.inputs.image-name }}
           subject-digest: ${{ steps.push.outputs.digest }}
           push-to-registry: true
