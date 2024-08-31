@@ -1,17 +1,15 @@
-name: Test the reusable workflow
+name: Test Reusable Workflow
 
 on:
-    push:
-        branches:
-        - master
+  push:
+    branches:
+      - master
 
 jobs:
-    test_reusable_workflows:
-        uses: ./.github/workflows/reusable/docker-build-and-push.yml
-        with: 
-            image-name: 'tuansondocker1407/test-azure'
-            registry: 'docker.io'
-            dockerfile-path: './Dockerfile'
-            context: '.'
-            
-    
+  test_reusable_workflow:
+    uses: ./.github/workflows/reusable/docker-build-and-push.yml
+    with:
+      image-name: tuansondocker1407/test-azure
+      registry: docker.io
+      dockerfile-path: ./Dockerfile
+      context: .

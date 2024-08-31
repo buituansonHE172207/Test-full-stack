@@ -9,19 +9,23 @@ on:
       image-name:
         description: 'The name of the Docker image to build and push'
         required: true
-        default: 'tuansondocker1407/test-azure'
+        type: string
+        default: tuansondocker1407/test-azure
       registry:
         description: 'The registry to push the Docker image to'
         required: true
-        default: 'docker.io'
+        type: string
+        default: docker.io
       dockerfile-path:
         description: 'The path to the Dockerfile to build the image from'
         required: true
-        default: './Dockerfile'
+        type: string
+        default: ./Dockerfile
       context:
         description: 'The context to use for the Docker build'
         required: true
-        default: '.'
+        type: string
+        default: .
       
 jobs:
   push_to_registry:
