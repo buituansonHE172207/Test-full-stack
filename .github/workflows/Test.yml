@@ -16,8 +16,8 @@ jobs:
     with:
       image-name: tuansondocker1407/test-azure
       registry: docker.io
-      dockerfile-path: ./Backend/Dockerfile
-      context: .
+      dockerfile-path: ./Dockerfile
+      context: ./backend
     secrets: 
       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
