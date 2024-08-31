@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - master
+permissions:
+  packages: write
+  contents: read
+  id-token: write
+  attestations: write
 
 jobs:
   test_reusable_workflow:
