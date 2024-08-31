@@ -11,7 +11,7 @@ permissions:
   attestations: write
 
 jobs:
-  test_reusable_workflow:
+  docker-back-end:
     uses: ./.github/workflows/docker-build-and-push.yml
     with:
       image-name: tuansondocker1407/test-azure
@@ -19,5 +19,16 @@ jobs:
       dockerfile-path: ./backend/Dockerfile
       context: ./backend
     secrets: 
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+  
+  docker-front-end:
+    uses: ./.github/workflows/docker-build-and-push.yml
+    with:
+      image-name: tuansondocker1407/test-azure
+      registry: docker.io
+      dockerfile-path: ./frontend/Dockerfile
+      context: ./frontend
+    secrets:
       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
