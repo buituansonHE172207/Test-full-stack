@@ -1,0 +1,46 @@
+name: Static Tests
+
+on:
+  workflow_call:
+    inputs:
+      react_project_dir:
+        required: true
+        type: string
+      dotnet_project_dir:
+        required: true
+        type: string
+    secrets:
+      SONAR_TOKEN: {}
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        
+      - name: Run ESLint for React
+        run: |
+          cd ${{ inputs.react_project_dir }}
+          npm ci
+          npm run lint
+
+      - name: Run .NET Linter
+        run: |
+          cd ${{ inputs.dotnet_project_dir }}
+          dotnet tool install -g dotnet-format
+          dotnet format
+
+  sonarcloud:
+    name: SonarCloud
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          
