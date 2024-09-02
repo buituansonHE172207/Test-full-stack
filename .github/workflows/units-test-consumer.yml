@@ -1,0 +1,17 @@
+name: Unit Tests
+
+env:
+  BACKEND_DIR: ./backend
+  FRONTEND_DIR: ./frontend
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  unit-test:
+    uses: ./.github/workflows/units-test.yml
+    with:
+      react_project_dir: ${{ env.FRONTEND_DIR }}
+      dotnet_project_dir: ${{ env.BACKEND_DIR }}

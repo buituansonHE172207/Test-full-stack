@@ -9,7 +9,7 @@ env:
 
 jobs:
   static-test:
-    uses: ./.github/workflows/statictest.yml
+    uses: ./.github/workflows/static-test-both.yml
     with:
       react_project_dir: ./frontend
       dotnet_project_dir: ./backend

@@ -1,4 +1,4 @@
-name: Static Tests
+name: Static Tests for both Frontend and Backend 
 
 on:
   workflow_call:
@@ -10,7 +10,9 @@ on:
         required: true
         type: string
     secrets:
-      SONAR_TOKEN: {}
+      SONAR_TOKEN: 
+        required: true
+
 
 jobs:
   lint:
