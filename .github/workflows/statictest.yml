@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         
       - name: Run ESLint for React
         run: |
@@ -29,15 +29,16 @@ jobs:
         run: |
           cd ${{ inputs.dotnet_project_dir }}
           dotnet tool install -g dotnet-format
-          dotnet format
+          dotnet format 
 
   sonarcloud:
-    name: SonarCloud
+    name: SonarCloud 
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+          path: ./frontend
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
