@@ -21,8 +21,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Go to frontend directory
-      run: cd ${{ inputs.react_project_dir }}
+      with:
+        path: ${{ inputs.react_project_dir }}
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
