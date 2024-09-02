@@ -29,7 +29,13 @@ jobs:
         run: |
           cd ${{ inputs.dotnet_project_dir }}
           dotnet tool install -g dotnet-format
-          dotnet format --verify-no-changes
+          dotnet format --verify-no-changes --report /tmp/dotnet-format-report.html
+
+      - name: Upload .NET Linter Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: dotnet-linter-report
+          path: /tmp/dotnet-format-report.html
 
   sonarcloud:
     name: SonarCloud 
@@ -52,4 +58,3 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           projectBaseDir: ${{ inputs.dotnet_project_dir }}
-          
