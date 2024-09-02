@@ -18,10 +18,10 @@ jobs:
       registry: docker.io
       dockerfile-path: ./backend/Dockerfile
       context: ./backend
-    secrets: 
+    secrets:
       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-  
+
   docker-front-end:
     uses: ./.github/workflows/docker-build-and-push.yml
     with:

@@ -1,0 +1,20 @@
+name: Static test front end
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  static-test:
+    uses: ./.github/workflows/statictest.yml
+    with:
+      react_project_dir: ./frontend
+      dotnet_project_dir: ./backend
+    secrets:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    
+
