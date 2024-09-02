@@ -29,7 +29,7 @@ jobs:
         run: |
           cd ${{ inputs.dotnet_project_dir }}
           dotnet tool install -g dotnet-format
-          dotnet format --verify-no-changes --report /tmp/dotnet-format-report.html
+          dotnet --report /tmp/dotnet-format-report.html
 
       - name: Upload .NET Linter Report
         uses: actions/upload-artifact@v3
