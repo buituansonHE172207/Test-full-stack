@@ -1,4 +1,4 @@
-name: Static Tests for both Frontend and Backend 
+name: Static Tests Reusable Workflow  
 
 on:
   workflow_call:
