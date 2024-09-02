@@ -13,5 +13,5 @@ jobs:
   unit-test:
     uses: ./.github/workflows/units-test.yml
     with:
-      react_project_dir: ${{ env.FRONTEND_DIR }}
-      dotnet_project_dir: ${{ env.BACKEND_DIR }}
+      react_project_dir: $FRONTEND_DIR
+      dotnet_project_dir: $BACKEND_DIR
